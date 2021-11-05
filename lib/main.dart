@@ -19,7 +19,8 @@ class _FadeInDemoState extends State<FadeInDemo> {
         ),
         onPressed: () => null,
       ),
-      Container(
+      // 애니메이션을 적용할 위젯 속성 선택
+      AnimatedOpacity(
         child: Column(
           children: <Widget>[
             Text('Type: Owl'),
