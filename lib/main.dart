@@ -8,6 +8,7 @@ class FadeInDemo extends StatefulWidget {
 }
 
 class _FadeInDemoState extends State<FadeInDemo> {
+  double opacity = 0.0;
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -21,6 +22,8 @@ class _FadeInDemoState extends State<FadeInDemo> {
       ),
       // 애니메이션을 적용할 위젯 속성 선택
       AnimatedOpacity(
+        duration: Duration(seconds: 3),
+        opacity: opacity,
         child: Column(
           children: <Widget>[
             Text('Type: Owl'),
