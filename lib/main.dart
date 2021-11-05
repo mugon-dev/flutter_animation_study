@@ -1,53 +1,24 @@
 import 'package:flutter/material.dart';
 
-const owl_url =
-    'https://raw.githubusercontent.com/flutter/website/master/src/images/owl.jpg';
+void main() => runApp(const LogoApp());
 
-class FadeInDemo extends StatefulWidget {
-  _FadeInDemoState createState() => _FadeInDemoState();
+class LogoApp extends StatefulWidget {
+  const LogoApp({Key? key}) : super(key: key);
+
+  @override
+  _LogoAppState createState() => _LogoAppState();
 }
 
-class _FadeInDemoState extends State<FadeInDemo> {
+class _LogoAppState extends State<LogoApp> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Image.network(owl_url),
-      TextButton(
-        child: Text(
-          'Show details',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-        onPressed: () => null,
-      ),
-      Container(
-        child: Column(
-          children: <Widget>[
-            Text('Type: Owl'),
-            Text('Age: 39'),
-            Text('Employment: None'),
-          ],
-        ),
-      )
-    ]);
-  }
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: FadeInDemo(),
-        ),
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        height: 300,
+        width: 300,
+        child: const FlutterLogo(),
       ),
     );
   }
-}
-
-void main() {
-  runApp(
-    MyApp(),
-  );
 }
