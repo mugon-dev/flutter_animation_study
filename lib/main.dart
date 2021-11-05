@@ -25,7 +25,8 @@ class _FadeInDemoState extends State<FadeInDemo> {
       ),
       // 애니메이션을 적용할 위젯 속성 선택
       AnimatedOpacity(
-        duration: Duration(seconds: 3),
+        // Set the duration of the animation
+        duration: Duration(seconds: 2),
         opacity: opacity,
         child: Column(
           children: <Widget>[
