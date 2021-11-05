@@ -18,7 +18,10 @@ class _FadeInDemoState extends State<FadeInDemo> {
           'Show details',
           style: TextStyle(color: Colors.blueAccent),
         ),
-        onPressed: () => null,
+        // Set up a trigger for the animation, and choose an end value
+        onPressed: () => setState(() {
+          opacity = 1;
+        }),
       ),
       // 애니메이션을 적용할 위젯 속성 선택
       AnimatedOpacity(
