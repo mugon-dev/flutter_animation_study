@@ -1,53 +1,77 @@
 import 'package:flutter/material.dart';
 
-const owl_url =
-    'https://raw.githubusercontent.com/flutter/website/master/src/images/owl.jpg';
-
-class FadeInDemo extends StatefulWidget {
-  _FadeInDemoState createState() => _FadeInDemoState();
+void main() {
+  runApp(
+    LogoApp(),
+  );
 }
 
-class _FadeInDemoState extends State<FadeInDemo> {
+class LogoWidget extends StatelessWidget {
+  const LogoWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Image.network(owl_url),
-      TextButton(
-        child: Text(
-          'Show details',
-          style: TextStyle(color: Colors.blueAccent),
-        ),
-        onPressed: () => null,
-      ),
-      Container(
-        child: Column(
-          children: <Widget>[
-            Text('Type: Owl'),
-            Text('Age: 39'),
-            Text('Employment: None'),
-          ],
-        ),
-      )
-    ]);
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: const FlutterLogo(),
+    );
   }
 }
 
-class MyApp extends StatelessWidget {
+class GrowTransition extends StatelessWidget {
+  const GrowTransition({required this.child, required this.animation, Key? key})
+      : super(key: key);
+
+  final Widget child;
+  final Animation<double> animation;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: FadeInDemo(),
-        ),
+    return Center(
+      child: AnimatedBuilder(
+        animation: animation,
+        builder: (context, child) {
+          return SizedBox(
+            height: animation.value,
+            width: animation.value,
+            child: child,
+          );
+        },
+        child: child,
       ),
     );
   }
 }
 
-void main() {
-  runApp(
-    MyApp(),
-  );
+class LogoApp extends StatefulWidget {
+  const LogoApp({Key? key}) : super(key: key);
+
+  @override
+  _LogoAppState createState() => _LogoAppState();
+}
+
+class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    animation = Tween<double>(begin: 0, end: 300).animate(controller);
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GrowTransition(child: const LogoWidget(), animation: animation);
+  }
 }
